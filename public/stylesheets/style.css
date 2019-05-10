@@ -1,0 +1,22 @@
+a {
+  color: #00B7FF; }
+/* 
+#test{
+    background-image: url('/images/pd-light-bulb.png')
+  } */
+
+  #grad1 {
+    background: red;
+    background: -webkit-linear-gradient(left,  cyan, blue, rgb(125, 106, 235));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+
+#grad2 {
+  background: red;
+  background: -webkit-linear-gradient(left,  rgb(214, 151, 188), rgb(224, 27, 215), rgb(71, 2, 85));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}

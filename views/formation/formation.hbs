@@ -1,0 +1,18 @@
+<div class="container-fluid  d-inline-flex  flex-row justify-content-center">
+  <h2>All Trainings </h2>
+</div>
+
+<div class="container mt-5 d-flex flex-row">
+
+
+  {{#each formation }}
+  <div class="card mx-2" style="width: 18rem;">
+    <img src="/images/salmonella.jpeg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{title}}</h5>
+      <p class="card-text">{{resume}}</p>
+      <a href="formation/{{_id}}" class="btn btn-primary">Details</a>
+    </div>
+  </div>
+  {{/each }}
+</div>

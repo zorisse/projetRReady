@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand " href="/" id="grad1">
+    <img src="/images/pd-light-bulb.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    R'Ready
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
+
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="/">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/formation">Formations</a>
+      </li>
+    </ul>
+
+
+    {{#if user}}
+    <ul class="navbar-nav ">
+      <li class="nav-item ">
+        <a class="nav-link active " id="grad2" href="">Welcome {{user.username}} </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/auth/logout">LogOUT</a>
+      </li>
+    </ul>
+
+
+    {{else}}
+    <ul class="navbar-nav ">
+      <li class="nav-item ">
+        <a class="nav-link" href="/auth/login">Login </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/auth/signup">SignUp</a>
+      </li>
+    </ul>
+    {{/if}}
+
+
+
+
+  </div>
+</nav>
