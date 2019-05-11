@@ -56,11 +56,9 @@ router.get('/formation/:id', (req, res, next) => {
   Formation.findOne({ _id: req.params.id })
     .populate('modules')
     .then(formation => {
-      console.log(req.user
-      )
-      console.log(req.session)
-      // res.render('formation/formation.hbs', { formation })
-      res.send(formation)
+
+      res.render('formation/OneFormation.hbs', { user: req.user, formation })
+      // res.send(formation)
     })
     .catch(err => console.log(err))
 })

@@ -4,6 +4,7 @@ const ObjectId = Schema.Types.ObjectId;
 
 const ModuleSchema = new Schema({
   title: String,
+  description: String,
   image: String,
   media_url: String,
   isDone: [
