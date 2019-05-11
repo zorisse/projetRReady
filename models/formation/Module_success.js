@@ -3,14 +3,11 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const module_success_Schema = new Schema({
-  module: [{
-    date_Success: Date,
-    module: { type: ObjectId, ref: 'Module' },
-  }
-  ]
-  // explicationde la formation
-  user: { type: ObjectId, ref: 'User' }
-  // array de modules 
+  user: { type: ObjectId, ref: 'User' },
+  module: [
+    { type: ObjectId, ref: 'Module' },
+  ],
+
 
 }, {
     timestamps: {

@@ -5,7 +5,9 @@ const router = express.Router();
 // require Module Model 
 const Formation = require('../models/formation/Formation');
 const Module = require('../models/formation/Module')
+const ModuleSuccess = require('../models/formation/Module_success')
 let check = require('../middlewar/checkRole')
+
 
 
 
@@ -52,7 +54,7 @@ router.post('/formation/add', (req, res, next) => {
 
 // // // get a specific Formation
 
-router.get('/formation/:id', (req, res, next) => {
+router.get('/formation/:id', check.isAuthenticated, check.checkGuest, (req, res, next) => {
   Formation.findOne({ _id: req.params.id })
     .populate('modules')
     .then(formation => {
@@ -98,5 +100,54 @@ router.get('/formation/:id', (req, res, next) => {
 
 
 
-// /// 
+// /// success
+
+
+
+
+
+
+router.post('/formation/module-success', (req, res, next) => {
+  const { user, module, formationid } = req.body
+
+
+  // si le user n'a jamais validé le module 
+  ModuleSuccess.find({ user, module })
+    .then(moduleSuccess => {
+      if (moduleSuccess.length > 0) {
+        res.redirect(`/formation/${formationid}`)
+      }
+
+
+    })
+  // le user existe 
+  ModuleSuccess.find({ user })
+    .then(userSuccess => {
+      console.log(userSuccess.length);
+      if (userSuccess.length > 0) {
+        ModuleSuccess.updateOne({ user }, { $push: { module } })
+          .then(moduleSuccess => {
+            console.log(' Module success => ', moduleSuccess)
+            res.redirect(`/formation/` + formationid)
+          })
+      } else {
+        ModuleSuccess.create({ module, user })
+          .then(success => {
+            console.log('success =>', success)
+            res.redirect('/formation/' + formationid)
+          })
+      }
+
+
+    })
+    .catch(err => console.log(err))
+
+})
+
+
+
+
+
+
+
 module.exports = router;

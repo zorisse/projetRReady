@@ -9,7 +9,7 @@ const formation_success_Schema = new Schema({
   }
   ]
   // explicationde la formation
-  user: { type: ObjectId, ref: 'User' }
+  user: { type: ObjectId, ref: 'User', unique: true }
   // array de modules 
 
 }, {
