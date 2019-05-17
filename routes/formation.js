@@ -55,13 +55,58 @@ router.post('/formation/add', (req, res, next) => {
 // // // get a specific Formation
 
 router.get('/formation/:id', check.isAuthenticated, check.checkGuest, (req, res, next) => {
-  Formation.findOne({ _id: req.params.id })
-    .populate('modules')
-    .then(formation => {
+  const user = req.user
 
-      res.render('formation/OneFormation.hbs', { user: req.user, formation })
-      // res.send(formation)
+  ModuleSuccess.find({ user })
+    .populate('modules')
+    .then(modulesDone => { // module déjà réalisé depuis la collection modulesucess 
+      console.log(modulesDone)
+      if (modulesDone.length > 0) {
+        Formation.findOne({ _id: req.params.id })
+          .populate('modules')
+          .then(formation => {
+            // console.log("modules réalisé => ", modulesDone[0].module)
+            // console.log('formation=> ', formation.modules)
+
+            let modulesDoneArray = formation.modules.map(module => {
+              // les ID sont des obj il faut les transformer en string. 
+
+              console.log(module._id);
+              console.log("modules réalisé => ", modulesDone[0].module)
+              let str = modulesDone[0].module.map(o => o.toString())
+              // je passe les id en string popur les comparer
+              if (str.includes(module._id.toString())) {
+                // module.done = true
+                return { ...module.toObject(), done: true }
+
+              } else {
+                return { ...module.toObject() }
+
+                // module.done = false
+              }
+              // return module
+            })
+
+
+
+
+            console.log("who is done => ", modulesDoneArray);
+
+            res.render('formation/OneFormation.hbs', { user: req.user, formation, modulesDoneArray })
+            // res.send(formation)
+          })
+
+      } else {
+        Formation.findOne({ _id: req.params.id })
+          .populate('modules')
+          .then(formation => {
+            res.render('formation/OneFormation.hbs', { user: req.user, formation })
+            // res.send(formation)
+          })
+
+      }
     })
+
     .catch(err => console.log(err))
 })
 
@@ -125,7 +170,7 @@ router.post('/formation/module-success', (req, res, next) => {
     .then(userSuccess => {
       console.log(userSuccess.length);
       if (userSuccess.length > 0) {
-        ModuleSuccess.updateOne({ user }, { $push: { module } })
+        ModuleSuccess.updateOne({ user }, { $addToSet: { module } })
           .then(moduleSuccess => {
             console.log(' Module success => ', moduleSuccess)
             res.redirect(`/formation/` + formationid)
@@ -143,11 +188,6 @@ router.post('/formation/module-success', (req, res, next) => {
     .catch(err => console.log(err))
 
 })
-
-
-
-
-
 
 
 module.exports = router;

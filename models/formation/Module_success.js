@@ -7,8 +7,6 @@ const module_success_Schema = new Schema({
   module: [
     { type: ObjectId, ref: 'Module' },
   ],
-
-
 }, {
     timestamps: {
       createdAt: 'created_at',
