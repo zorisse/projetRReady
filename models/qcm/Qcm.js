@@ -4,7 +4,7 @@ const ObjectId = Schema.Types.ObjectId;
 
 const qcmSchema = new Schema({
   title: String,
-  questions: [{ type: ObjectId, ref: 'Question' }],
+  question: [{ type: ObjectId, ref: 'Question' }],
 
 }, {
     timestamps: {
@@ -13,5 +13,5 @@ const qcmSchema = new Schema({
     }
   });
 
-const Qcm = mongoose.model('Qcm', userSchema);
-module.exports = User;
+const Qcm = mongoose.model('Qcm', qcmSchema);
+module.exports = Qcm;

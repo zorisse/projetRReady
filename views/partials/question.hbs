@@ -1,0 +1,55 @@
+{{!-- title: String,
+  image: String,
+  comment: String,
+  reponse1: String,
+  reponse2: String,
+  reponse3: String,
+  reponse4: String,
+  reponse_correct: String, --}}
+
+<div class="container" style="width:50%">
+  <h4>Question </h4>
+  <form action="/question/add" method="POST">
+    <div class="form-group">
+      <label for="title">La Question ? </label>
+      <input type="text" name="title" id="title" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="image ">Image</label>
+      <input type="text" name="image" id="image" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="comment"> Commentaires</label>
+      <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
+    </div>
+
+
+
+
+    <div class="form-group">
+      <label for="reponse1"> Réponse</label>
+      <textarea class="form-control" name="reponse1" id="reponse1" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="reponse2"> Réponse</label>
+      <textarea class="form-control" name="reponse2" id="reponse2" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="reponse3"> Réponse</label>
+      <textarea class="form-control" name="reponse3" id="reponse3" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="reponse4"> Réponse</label>
+      <textarea class="form-control" name="reponse4" id="reponse4" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="reponse_correct"> Reponse Correct</label>
+      <textarea class="form-control" name="reponse_correct" id="reponse_correct" rows="3" value=""></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>

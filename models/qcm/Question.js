@@ -6,13 +6,11 @@ const QuestionSchema = new Schema({
   title: String,
   image: String,
   comment: String,
-  question1: String,
-  question2: String,
-  question3: String,
-  question4: String,
-  reponse: String,
-  // reponse: [{ type: ObjectId, ref: 'Reponse' }]
-
+  reponse1: String,
+  reponse2: String,
+  reponse3: String,
+  reponse4: String,
+  reponse_correct: String,
 
 }, {
     timestamps: {
@@ -21,5 +19,5 @@ const QuestionSchema = new Schema({
     }
   });
 
-const Question = mongoose.model('Module', QuestionSchema);
+const Question = mongoose.model('Question', QuestionSchema);
 module.exports = Question;

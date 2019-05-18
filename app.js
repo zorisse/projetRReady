@@ -93,6 +93,9 @@ app.use('/', module_Routes);
 const formation_Routes = require('./routes/formation');
 app.use('/', formation_Routes);
 
+const qcm_Routes = require('./routes/qcm_route');
+app.use('/', qcm_Routes);
+
 
 
 module.exports = app;
