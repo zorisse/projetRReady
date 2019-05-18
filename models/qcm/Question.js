@@ -6,7 +6,12 @@ const QuestionSchema = new Schema({
   title: String,
   image: String,
   comment: String,
-  reponse: [{ type: ObjectId, ref: 'Reponse' }]
+  question1: String,
+  question2: String,
+  question3: String,
+  question4: String,
+  reponse: String,
+  // reponse: [{ type: ObjectId, ref: 'Reponse' }]
 
 
 }, {

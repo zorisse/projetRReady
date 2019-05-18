@@ -12,12 +12,12 @@
     <hr class="my-4">
   </div>
 
-  {{!-- {{#each formation.modules  }} --}}
 
 
+
+  {{#if modulesDoneArray }}
   {{#each modulesDoneArray}}
-
-
+  {{done}}
   <form action="/formation/module-success" method="POST">
     <input type="hidden" name="user" value="{{../user._id}}">
     <input type="hidden" name="formationid" value="{{../formation._id}}">
@@ -41,6 +41,34 @@
     </div>
   </form>
   {{/each}}
+  {{else}}
+  {{#each formation.modules  }}
+  <form action="/formation/module-success" method="POST">
+    <input type="hidden" name="user" value="{{../user._id}}">
+    <input type="hidden" name="formationid" value="{{../formation._id}}">
 
+    <input type="hidden" name="module" value={{this._id}}>
+    <div class="card my-1">
+      <div class="card-header">
+
+        <button type="submit" class="btn btn-success float-right ">Validation</button>
+
+
+        {{@key}} module
+      </div>
+      <div class="card-body ">
+        <h5 class="card-title"> {{title}}</h5>
+        <p class="card-text">{{description}}</p>
+        <a href="{{media_url}}" class="btn btn-primary">Go to module</a>
+      </div>
+    </div>
+  </form>
+  {{/each }}
+
+
+  {{/if}}
+
+
+  {{!-- {{#each formation.modules  }} --}}
 
 </div>

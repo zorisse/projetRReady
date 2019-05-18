@@ -60,8 +60,9 @@ router.get('/formation/:id', check.isAuthenticated, check.checkGuest, (req, res,
   ModuleSuccess.find({ user })
     .populate('modules')
     .then(modulesDone => { // module déjà réalisé depuis la collection modulesucess 
-      console.log(modulesDone)
+      console.log("modulesdone =>", modulesDone.length)
       if (modulesDone.length > 0) {
+        console.log("array")
         Formation.findOne({ _id: req.params.id })
           .populate('modules')
           .then(formation => {
@@ -80,7 +81,7 @@ router.get('/formation/:id', check.isAuthenticated, check.checkGuest, (req, res,
                 return { ...module.toObject(), done: true }
 
               } else {
-                return { ...module.toObject() }
+                return { ...module.toObject(), done: false }
 
                 // module.done = false
               }
@@ -97,12 +98,14 @@ router.get('/formation/:id', check.isAuthenticated, check.checkGuest, (req, res,
           })
 
       } else {
+        console.log("ok formation")
         Formation.findOne({ _id: req.params.id })
           .populate('modules')
           .then(formation => {
             res.render('formation/OneFormation.hbs', { user: req.user, formation })
             // res.send(formation)
           })
+          .catch(err => console.log(err))
 
       }
     })
