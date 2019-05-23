@@ -11,9 +11,7 @@
     </div>
     <hr class="my-4">
   </div>
-
-
-
+  {{formation}}
 
   {{#if modulesDoneArray }}
   {{#each modulesDoneArray}}
@@ -41,6 +39,10 @@
     </div>
   </form>
   {{/each}}
+
+
+
+
   {{else}}
   {{#each formation.modules  }}
   <form action="/formation/module-success" method="POST">
@@ -64,11 +66,15 @@
     </div>
   </form>
   {{/each }}
-
+  {{formation.qcm}}
+  <a href=`/qcm/${formation.qcm._id}` class="btn btn-primary btn-lg btn-block">QCM de
+    validation</a>
 
   {{/if}}
 
 
   {{!-- {{#each formation.modules  }} --}}
-
+  {{formation.qcm}}
+  <a href=`/qcm/${formation.qcm._id}` class="btn btn-primary btn-lg btn-block">QCM de
+    validation</a>
 </div>

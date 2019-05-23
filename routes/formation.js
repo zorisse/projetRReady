@@ -6,17 +6,19 @@ const router = express.Router();
 const Formation = require('../models/formation/Formation');
 const Module = require('../models/formation/Module')
 const ModuleSuccess = require('../models/formation/Module_success')
+const Qcm = require('../models/qcm/Qcm')
 let check = require('../middlewar/checkRole')
 
 
 
 
-// Get all celebrities 
+// Get all Formation
 
 router.get('/formation', check.isAuthenticated, check.checkGuest, (req, res, next) => {
 
   Formation.find()
     .populate('modules', 'title')
+    .populate('qcm')
     .then(formation => {
 
       res.render('formation/formation.hbs', { user: req.user, formation })
@@ -29,19 +31,22 @@ router.get('/formation', check.isAuthenticated, check.checkGuest, (req, res, nex
 // // Adding 
 
 router.get('/formation/add', check.isAuthenticated, check.checkGuest, (req, res, next) => {
-  Module.find()
+  Module.find({})
     .then(module => {
-      // je vais chercher tous les modules pour le select 
-      res.render('formation/formation_adding_form.hbs', { user: req.user, module })
+      Qcm.find({})
+        .then(qcm => {
+          // je vais chercher tous les modules pour le select 
+          res.render('formation/formation_adding_form.hbs', { user: req.user, module, qcm })
+        })
     })
     .catch(err => console.log(err))
 })
 
 router.post('/formation/add', (req, res, next) => {
-  const { title, image, resume, modules } = req.body
+  const { title, image, resume, modules, qcm } = req.body
 
   Formation.create({
-    title, image, resume, modules
+    title, image, resume, modules, qcm
   })
     .then(formation => {
       res.redirect('/formation')
@@ -65,6 +70,7 @@ router.get('/formation/:id', check.isAuthenticated, check.checkGuest, (req, res,
         console.log("array")
         Formation.findOne({ _id: req.params.id })
           .populate('modules')
+          .populate('qcm')
           .then(formation => {
             // console.log("modules réalisé => ", modulesDone[0].module)
             // console.log('formation=> ', formation.modules)
