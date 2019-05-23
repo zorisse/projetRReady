@@ -6,8 +6,11 @@
 
 
   {{#each qcm }}
-  <div>
-    {{this}}
+  <div class="card mx-2" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{title}}</h5>
+      <a href="qcm/{{_id}}" class="btn btn-primary">Details</a>
+    </div>
   </div>
 
   {{/each }}

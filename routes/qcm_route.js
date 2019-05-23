@@ -80,11 +80,21 @@ router.post('/question/add', (req, res, next) => {
 
 router.get('/qcm/:id', (req, res, next) => {
   Qcm.findOne({ _id: req.params.id })
+    .populate('question')
     .then(qcm => {
-      res.render('module/module.hbs', { qcm })
+      res.render('qcm/qcmOne.hbs', { qcm })
     })
     .catch(err => console.log(err))
 })
+router.get('/qcm/:id/axios', (req, res, next) => {
+  Qcm.findOne({ _id: req.params.id })
+    .populate('question')
+    .then(qcm => {
+      res.send(qcm)
+    })
+    .catch(err => console.log(err))
+})
+
 
 
 // //Update 

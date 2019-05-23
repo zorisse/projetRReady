@@ -17,7 +17,7 @@
 
   {{#if modulesDoneArray }}
   {{#each modulesDoneArray}}
-  {{done}}
+  {{!-- {{done}} --}}
   <form action="/formation/module-success" method="POST">
     <input type="hidden" name="user" value="{{../user._id}}">
     <input type="hidden" name="formationid" value="{{../formation._id}}">

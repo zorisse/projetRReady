@@ -1,0 +1,48 @@
+<div class="container">
+  <div>
+    <h1 style="text-align:center; font-size:5rem;">
+      {{qcm.title}}
+      <span hidden id="_id">{{qcm._id}}</span>
+    </h1>
+
+    {{#each qcm.question}}
+
+    <div class="card my-1">
+      <div class="card-body ">
+        <h5 class="card-title" style="text-align:center"> {{title}}</h5>
+        <p class="card-text" style="font-style: italic"> Commentaires : {{comment}}</p>
+
+        <div id="{{@key}}">
+          <p class="card-text">{{reponse1}}
+            <span style="float:right">
+              <input type="checkbox" class="form-check-input">
+            </span>
+          </p>
+
+
+          <p class="card-text">{{reponse2}}
+            <span style="float:right">
+              <input type="checkbox" class="form-check-input">
+            </span>
+          </p>
+          <p class="card-text">{{reponse3}}
+            <span style="float:right">
+              <input type="checkbox" class="form-check-input">
+            </span>
+          </p>
+          <p class="card-text">{{reponse4}}
+            <span style="float:right">
+              <input type="checkbox" class="form-check-input">
+            </span>
+          </p>
+          <input type="hidden" value="{{reponse_correct}}">
+        </div>
+
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js" charset="utf-8"></script>
+<script src="/javascripts/qcmchecker.js"></script>

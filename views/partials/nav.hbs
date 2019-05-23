@@ -15,9 +15,41 @@
       <li class="nav-item ">
         <a class="nav-link" href="/">Home </a>
       </li>
-      <li class="nav-item">
+      {{!-- <li class="nav-item">
         <a class="nav-link" href="/formation">Formations</a>
+      </li> --}}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="/formation" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Formations
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/formation">FormationS </a>
+          <a class="dropdown-item" href="/formation/add">Ajouter Formation</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/module">ModuleS</a>
+          <a class="dropdown-item" href="/module/add">Ajouter Module</a>
+        </div>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="/qcm" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Qcm
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/qcm">QcmS </a>
+          <a class="dropdown-item" href="/qcm/add">Ajouter Qcm</a>
+        </div>
+      </li>
+
+
+
+
+
+
+
+
+
     </ul>
 
 
